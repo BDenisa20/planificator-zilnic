@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrare utilizatori</title>
+</head>
+<body>
+
+<h1>Lista utilizatori</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Rol</th>
+        <th>Acțiuni</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.role.name}"></td>
+
+        <td>
+            <a th:href="@{'/admin/edit-role/' + ${user.id}}">Schimbă rol</a> |
+            <a th:href="@{'/admin/delete/' + ${user.id}}">Șterge</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Schimbă rolul utilizatorului</title>
+</head>
+<body>
+
+<h1>Schimbă rolul utilizatorului</h1>
+
+<form th:action="@{'/admin/edit-role/' + ${user.id}}" method="post">
+
+    <p>
+        <strong>Username:</strong>
+        <span th:text="${user.username}"></span>
+    </p>
+
+    <label for="role">Alege rolul:</label>
+    <select id="role" name="roleId">
+        <option th:each="role : ${roles}"
+                th:value="${role.id}"
+                th:text="${role.name}"
+                th:selected="${role.id == user.role.id}">
+        </option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">Salvează</button>
+</form>
+
+<br>
+<a href="/admin/users">Înapoi la lista de utilizatori</a>
+
+</body>
+</html>
